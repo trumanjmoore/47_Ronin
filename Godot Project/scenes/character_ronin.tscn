@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ciktj4k4ygngx"]
+[gd_scene load_steps=9 format=3 uid="uid://ciktj4k4ygngx"]
 
 [ext_resource type="Script" uid="uid://l5a05osfxb5" path="res://scripts/character_ronin.gd" id="1_mwkte"]
 [ext_resource type="Texture2D" uid="uid://bgrnph2swcf7g" path="res://sprites/Hat_Ronin/Ronin_Hat_Breathing-Sheet.png" id="3_uitew"]
@@ -42,15 +42,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterRonin" type="CharacterBody2D" unique_id=1400270626]
+[node name="CharacterRonin" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_mwkte")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471966339]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_njcak")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1767229095]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6pewp")
 animation = &"breathing"
 frame_progress = 0.08162351
