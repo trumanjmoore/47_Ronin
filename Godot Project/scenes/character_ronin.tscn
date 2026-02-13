@@ -272,15 +272,18 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="CharacterRonin" type="CharacterBody2D" unique_id=1400270626]
+[node name="CharacterRonin" type="CharacterBody2D" unique_id=1005983935]
 collision_layer = 2
 script = ExtResource("1_mwkte")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471966339]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1849175173]
+offset = Vector2(0, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
 position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_njcak")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1767229095]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 sprite_frames = SubResource("SpriteFrames_6pewp")
 animation = &"attack_one"
 

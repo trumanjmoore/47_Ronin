@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var speed = 60
 @export var jump_speed = -100
 @export var gravity = 500
+var combo_count: int = 0
+@onready var combo_timer: Timer = $ComboTimer
 
 var attack_index = 0
 var sheathing = false
