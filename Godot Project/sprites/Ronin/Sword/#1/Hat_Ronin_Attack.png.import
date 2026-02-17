@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgrnph2swcf7g"
-path="res://.godot/imported/Ronin_Hat_Breathing-Sheet.png-deba1a88f5c333cb2ac481a75e78b21d.ctex"
+uid="uid://7vj2r0f7xrvc"
+path="res://.godot/imported/Hat_Ronin_Attack.png-b57bbf9f52ed8f1d118f741eec74752f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Hat_Ronin/Ronin_Hat_Breathing-Sheet.png"
-dest_files=["res://.godot/imported/Ronin_Hat_Breathing-Sheet.png-deba1a88f5c333cb2ac481a75e78b21d.ctex"]
+source_file="res://sprites/Ronin/Sword/#1/Hat_Ronin_Attack.png"
+dest_files=["res://.godot/imported/Hat_Ronin_Attack.png-b57bbf9f52ed8f1d118f741eec74752f.ctex"]
 
 [params]
 
