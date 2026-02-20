@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://ciktj4k4ygngx" path="res://scenes/character_ronin.tscn" id="1_rmnn5"]
 [ext_resource type="PackedScene" uid="uid://degaho87b4dqm" path="res://scenes/test_pickup.tscn" id="2_if5rx"]
+[ext_resource type="PackedScene" uid="uid://ciktj4k4ygngx" path="res://scenes/Ronins/character_ronin.tscn" id="1_rmnn5"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_vrwqx"]
-a = Vector2(319, 179)
-b = Vector2(0, 181)
+a = Vector2(321, 180)
+b = Vector2(-3, 180)
 
 [node name="TestFloor" type="Node2D" unique_id=1794482630]
 

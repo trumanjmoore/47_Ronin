@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cpddmyvu4muw4"]
 
+[ext_resource type="Script" uid="uid://g6rfb5ygjh0i" path="res://scripts/Homebase/gatcha.gd" id="1_d1her"]
+
 [node name="Gatcha" type="Control" unique_id=1622759912]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d1her")

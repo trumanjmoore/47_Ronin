@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ciktj4k4ygngx"]
 
-[ext_resource type="Script" uid="uid://l5a05osfxb5" path="res://scripts/character_ronin.gd" id="1_mwkte"]
+[ext_resource type="Script" uid="uid://l5a05osfxb5" path="res://scripts/Ronins/character_ronin.gd" id="1_mwkte"]
 [ext_resource type="Texture2D" uid="uid://7vj2r0f7xrvc" path="res://sprites/Ronin/Sword/#1/Hat_Ronin_Attack.png" id="2_uxbe1"]
 [ext_resource type="Texture2D" uid="uid://d3vxntx1w0770" path="res://sprites/Ronin/Sword/#1/Ronin_Hat_Breathing.png" id="3_uxbe1"]
 [ext_resource type="Texture2D" uid="uid://c8ql1fak3oq3q" path="res://sprites/Ronin/Sword/#1/up_attack.png" id="3_vaxsq"]
