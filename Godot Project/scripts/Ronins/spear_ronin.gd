@@ -43,10 +43,14 @@ func _process(delta: float) -> void:
 	
 
 func _physics_process(delta):
-
 	# Add gravity every frame
 	velocity.y += gravity * delta
-	velocity.x = Input.get_axis("ui_left", "ui_right") * speed
+	
+	if !attacking && $ComboTimer.is_stopped():
+		velocity.x = Input.get_axis("ui_left", "ui_right") * speed
+	elif !jumping && !sheathing:
+		velocity.x = 0
+		
 	move_and_slide()
 
 	# Only allow jumping when on the ground

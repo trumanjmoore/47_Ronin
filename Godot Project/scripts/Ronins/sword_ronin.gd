@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var jump_speed = -200
 @export var gravity = 500
 var combo_count: int = 0
-var character = "#1"
 @onready var combo_timer: Timer = $ComboTimer
 
 var attack_index = 0
@@ -46,7 +45,11 @@ func _physics_process(delta):
 
 	# Add gravity every frame
 	velocity.y += gravity * delta
-	velocity.x = Input.get_axis("ui_left", "ui_right") * speed
+	
+	if !attacking && $ComboTimer.is_stopped():
+		velocity.x = Input.get_axis("ui_left", "ui_right") * speed
+	elif !jumping && !sheathing:
+		velocity.x = 0
 	move_and_slide()
 
 	# Only allow jumping when on the ground
