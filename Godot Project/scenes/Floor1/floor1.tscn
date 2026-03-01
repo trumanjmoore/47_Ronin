@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djad33b6nciqv"]
 
 [ext_resource type="Texture2D" uid="uid://b38vf22dfm1p4" path="res://sprites/Floor1_Tiles/floor1_test_tileset.png" id="1_spwx1"]
-[ext_resource type="PackedScene" uid="uid://ciktj4k4ygngx" path="res://scenes/Ronins/character_ronin.tscn" id="2_i7pqp"]
+[ext_resource type="PackedScene" uid="uid://ciktj4k4ygngx" path="res://scenes/Ronins/sword_ronin.tscn" id="2_i7pqp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1aqqp"]
 texture = ExtResource("1_spwx1")

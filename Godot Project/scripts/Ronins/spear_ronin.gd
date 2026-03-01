@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var jump_speed = -200
 @export var gravity = 500
 var combo_count: int = 0
+var character = "#1"
 @onready var combo_timer: Timer = $ComboTimer
 
 var attack_index = 0
@@ -75,7 +76,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	elif attack_index == 4:
 		if jumping:
 			jumping = false
-		sheath()
+		attack_index = 0
+		timedout = false;
+		attacking = false
 	elif attack_index > 0:
 		if jumping:
 			jumping = false
