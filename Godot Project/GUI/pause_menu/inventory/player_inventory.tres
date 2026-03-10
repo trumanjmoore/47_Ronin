@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="InventoryData" format=3 uid="uid://cafvm6ul7elw6"]
+
+[ext_resource type="Script" uid="uid://dkt6vi2v71oi5" path="res://GUI/pause_menu/inventory/scripts/inventory_data.gd" id="1_x61lb"]
+[ext_resource type="Script" uid="uid://dm3x60x68wd61" path="res://GUI/pause_menu/inventory/scripts/slot_data.gd" id="2_1btyl"]
+[ext_resource type="Resource" uid="uid://d2kkgbgscglcc" path="res://Items/sushi.tres" id="3_1btyl"]
+[ext_resource type="Resource" uid="uid://dsnkj54noqv4l" path="res://Items/chicken.tres" id="4_d33ra"]
+[ext_resource type="Resource" uid="uid://btcs4j862eqxo" path="res://Items/turnip.tres" id="5_0w5vp"]
+
+[sub_resource type="Resource" id="Resource_6kbrr"]
+script = ExtResource("2_1btyl")
+item_data = ExtResource("3_1btyl")
+quantity = 2
+metadata/_custom_type_script = "uid://dm3x60x68wd61"
+
+[sub_resource type="Resource" id="Resource_18tpa"]
+script = ExtResource("2_1btyl")
+item_data = ExtResource("4_d33ra")
+quantity = 12
+metadata/_custom_type_script = "uid://dm3x60x68wd61"
+
+[sub_resource type="Resource" id="Resource_oga8p"]
+script = ExtResource("2_1btyl")
+item_data = ExtResource("5_0w5vp")
+quantity = 5
+metadata/_custom_type_script = "uid://dm3x60x68wd61"
+
+[resource]
+script = ExtResource("1_x61lb")
+slots = Array[ExtResource("2_1btyl")]([SubResource("Resource_6kbrr"), SubResource("Resource_18tpa"), SubResource("Resource_oga8p")])
+metadata/_custom_type_script = "uid://dkt6vi2v71oi5"

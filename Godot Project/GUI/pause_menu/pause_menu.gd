@@ -1,8 +1,13 @@
 extends CanvasLayer
 
-@onready var button_save = $VBoxContainer/Button_Save
-@onready var button_load = $VBoxContainer/Button_Load
-@onready var button_quit = $VBoxContainer/Button_Quit
+signal shown
+signal hidden
+
+@onready var button_save = $Control/VBoxContainer/Button_Save
+@onready var button_load = $Control/VBoxContainer/Button_Load
+@onready var button_quit = $Control/VBoxContainer/Button_Quit
+@onready var item_description = $Control/ItemDescription
+
 var is_paused : bool=false
 
 func _ready():
@@ -27,6 +32,7 @@ func show_pause_menu():
 	get_tree().paused = true
 	visible = true
 	is_paused = true
+	shown.emit()
 	# button_save.grab_focus()
 	# need above for controller, currently not implementing
 
@@ -35,6 +41,7 @@ func hide_pause_menu():
 	get_tree().paused = false
 	visible = false
 	is_paused = false
+	hidden.emit()
 
 
 
@@ -59,5 +66,6 @@ func _on_quit_pressed():
 	hide_pause_menu()
 	pass
 	
-	
-	
+# function to update item description
+func update_item_description(new_text: String):
+	item_description.text = new_text
