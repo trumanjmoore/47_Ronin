@@ -103,5 +103,10 @@ func _on_combo_timer_timeout() -> void:
 	sheath()
 	$ComboTimer.stop()
 
-func increase_speed(spd_inc_amounnt):
-	speed += spd_inc_amounnt
+# function to increase speed for item pickups
+# might need a global item pickup manager for all the ronin
+# if we're being lazy honestly we could just copy paste item effects for all the ronin
+# unless items would have different effects for different ronin
+func increase_speed(spd_inc_amount):
+	speed += spd_inc_amount
+	print("increase speed by: ", spd_inc_amount)
