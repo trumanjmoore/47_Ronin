@@ -28,4 +28,3 @@ func update_inventory():
 		add_child(new_slot)   #adds child instantiated above to gridcontainer
 		new_slot.slot_data = s  # calls set_slot_data in inventory slot ui
 	
-	

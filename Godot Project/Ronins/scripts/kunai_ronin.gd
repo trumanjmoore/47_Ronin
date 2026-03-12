@@ -18,6 +18,7 @@ var attacking = false
 var jumping = false
 
 func _ready() -> void:
+	#PlayerManager.player = self
 	global_position = spawn_position
 
 func _process(delta: float) -> void:
@@ -117,4 +118,9 @@ func _on_combo_timer_timeout() -> void:
 		reload()
 		return
 	sheath()
+	
+func increase_speed(spd_inc_amount):
+	speed += spd_inc_amount
+	print("increase speed by: ", spd_inc_amount)
+	
 	

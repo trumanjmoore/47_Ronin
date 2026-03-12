@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name SpearRonin extends CharacterBody2D
 
 @export var speed = 60
 @export var jump_speed = -200
@@ -15,6 +15,7 @@ var attacking = false
 var jumping = false
 
 func _ready() -> void:
+	#PlayerManager.player = self
 	global_position = spawn_position
 
 func _process(delta: float) -> void:
@@ -101,3 +102,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_combo_timer_timeout() -> void:
 	sheath()
 	$ComboTimer.stop()
+
+func increase_speed(spd_inc_amounnt):
+	speed += spd_inc_amounnt

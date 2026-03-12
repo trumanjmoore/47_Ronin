@@ -48,7 +48,8 @@ offset_top = 4.0
 offset_right = 153.0
 offset_bottom = 27.0
 grow_horizontal = 0
-text = "[paused]"
+text = "Paused"
+horizontal_alignment = 1
 
 [node name="ItemDescription" type="Label" parent="Control" unique_id=1811487599]
 modulate = Color(0.8158153, 0.81581545, 0.8158154, 0.5411765)
@@ -56,21 +57,20 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -28.0
-offset_top = 151.0
-offset_right = 165.0
-offset_bottom = 174.0
+offset_left = -31.0
+offset_top = 130.0
+offset_right = 162.0
+offset_bottom = 153.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 8
-text = "[paused]"
 autowrap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=622368671]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 60.0
-offset_right = 206.0
-offset_bottom = 148.0
+offset_left = 7.0
+offset_top = 35.0
+offset_right = 203.0
+offset_bottom = 123.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_36pfd")
 
 [node name="GridContainer" type="GridContainer" parent="Control/PanelContainer" unique_id=391558071]

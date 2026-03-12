@@ -14,11 +14,13 @@ func _ready():
 		return
 	area_2d.body_entered.connect(_on_body_entered)
 
-func _on_body_entered(b):
-	if b is KunaiRonin:
+#TODO: change to player once manager is set up
+func _on_body_entered(body):
+	if body.collision_layer & (1 << 1):  # check for player collision layer 2
 		if item_data:
 			if PlayerManager.INVENTORY_DATA.add_item(item_data) == true:
 				item_picked_up()
+				item_data.use()
 	pass
 
 # only called if there was room in inventory
