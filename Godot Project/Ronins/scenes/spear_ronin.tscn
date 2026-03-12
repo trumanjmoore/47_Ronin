@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b3mdkus1kmc7q" path="res://Ronins/sprites/#2/attacking.png" id="6_3bga2"]
 [ext_resource type="Texture2D" uid="uid://do7acv0k8f8cy" path="res://Ronins/sprites/#2/walking.png" id="7_agqu3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_njcak"]
-size = Vector2(11, 25)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nmud1"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3bga2"]
 atlas = ExtResource("6_3bga2")
@@ -312,20 +312,78 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmud1"]
+size = Vector2(40.5, 6)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a25nd"]
+radius = 15.010824
+height = 39.997173
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fkau"]
+radius = 6.0
+height = 36.0
+
 [node name="SpearRonin" type="CharacterBody2D" unique_id=1005983935]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_vw0bq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
-position = Vector2(-0.5, 3.5)
-shape = SubResource("RectangleShape2D_njcak")
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_nmud1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 sprite_frames = SubResource("SpriteFrames_6pewp")
-animation = &"jump"
+animation = &"attack_one"
+frame = 5
+frame_progress = 0.7213711
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1681577053]
 
+[node name="Hitboxes" type="Container" parent="." unique_id=1950539597]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AttackOne" type="Area2D" parent="Hitboxes" unique_id=553557017]
+visible = false
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackOne" unique_id=1148270959]
+position = Vector2(19.75, 0)
+shape = SubResource("RectangleShape2D_nmud1")
+
+[node name="AttackThree" type="Area2D" parent="Hitboxes" unique_id=952009230]
+visible = false
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackThree" unique_id=2051860292]
+position = Vector2(13.000001, 1)
+rotation = -1.5826788
+shape = SubResource("CapsuleShape2D_a25nd")
+
+[node name="AttackUp" type="Area2D" parent="Hitboxes" unique_id=721258690]
+visible = false
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackUp" unique_id=1729348488]
+position = Vector2(5, -19)
+shape = SubResource("CapsuleShape2D_4fkau")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1776299376]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1577983914]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_nmud1")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
+[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]

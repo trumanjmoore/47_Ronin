@@ -17,6 +17,8 @@ var timedout = false
 var attacking = false
 var jumping = false
 
+var health = 3
+
 func _ready() -> void:
 	global_position = spawn_position
 
@@ -118,3 +120,9 @@ func _on_combo_timer_timeout() -> void:
 		return
 	sheath()
 	
+
+
+func _on_hit_detection_area_entered(area: Area2D) -> void:
+	health -= 1
+	if health <= 0:
+		queue_free()

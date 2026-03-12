@@ -3,16 +3,22 @@
 [ext_resource type="Texture2D" uid="uid://spmr4nt1s38h" path="res://misc/sprites/Kunai.png" id="1_jd0wl"]
 [ext_resource type="Script" uid="uid://dj5gfhfsxff6b" path="res://misc/scripts/kunai.gd" id="1_kvcgi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvcgi"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66qat"]
 size = Vector2(6, 2)
 
 [node name="Kunai" type="CharacterBody2D" unique_id=1926306809]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 0
+collision_mask = 5
 script = ExtResource("1_kvcgi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=754168583]
-shape = SubResource("RectangleShape2D_kvcgi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=129826753]
 texture = ExtResource("1_jd0wl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=652647657]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=120390716]
+shape = SubResource("RectangleShape2D_66qat")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

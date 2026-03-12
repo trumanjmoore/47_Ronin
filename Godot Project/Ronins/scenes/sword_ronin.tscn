@@ -7,9 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://b1vlg53rlb71c" path="res://Ronins/sprites/#1/Hat_Ronin_Walking.png" id="4_uitew"]
 [ext_resource type="Texture2D" uid="uid://kw2ncpnw12wt" path="res://Ronins/sprites/#1/Hat_Ronin_Jump.png" id="4_vaxsq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_njcak"]
-size = Vector2(11, 25)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vaxsq"]
 atlas = ExtResource("2_uxbe1")
 region = Rect2(0, 0, 64, 64)
@@ -74,13 +71,13 @@ region = Rect2(1152, 0, 64, 64)
 atlas = ExtResource("2_uxbe1")
 region = Rect2(1216, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vs04u"]
-atlas = ExtResource("2_uxbe1")
-region = Rect2(640, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1phrj"]
 atlas = ExtResource("2_uxbe1")
 region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vs04u"]
+atlas = ExtResource("2_uxbe1")
+region = Rect2(640, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lebdl"]
 atlas = ExtResource("2_uxbe1")
@@ -89,10 +86,6 @@ region = Rect2(768, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uuka5"]
 atlas = ExtResource("2_uxbe1")
 region = Rect2(832, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a7rf8"]
-atlas = ExtResource("3_vaxsq")
-region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5u5hy"]
 atlas = ExtResource("3_vaxsq")
@@ -105,6 +98,10 @@ region = Rect2(128, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_eii6h"]
 atlas = ExtResource("3_vaxsq")
 region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7rf8"]
+atlas = ExtResource("3_vaxsq")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_riox4"]
 atlas = ExtResource("3_vaxsq")
@@ -252,10 +249,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vs04u")
+"texture": SubResource("AtlasTexture_1phrj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1phrj")
+"texture": SubResource("AtlasTexture_vs04u")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lebdl")
@@ -269,9 +266,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a7rf8")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_5u5hy")
 }, {
 "duration": 1.0,
@@ -279,6 +273,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eii6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7rf8")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_riox4")
@@ -368,20 +365,100 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h3g8s"]
+radius = 5.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0wx7"]
+radius = 9.999994
+height = 37.99935
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_um34y"]
+radius = 5.318727
+height = 25.987785
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jhm4y"]
+radius = 7.0
+height = 55.36422
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umsw2"]
+radius = 22.0
+height = 44.0
+
 [node name="SwordRonin" type="CharacterBody2D" unique_id=1005983935]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_mwkte")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
-position = Vector2(-0.5, 3.5)
-shape = SubResource("RectangleShape2D_njcak")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=113992663]
 sprite_frames = SubResource("SpriteFrames_6pewp")
-animation = &"attack_up"
+animation = &"breathing"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1318996772]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_h3g8s")
 
 [node name="ComboTimer" type="Timer" parent="." unique_id=1681577053]
 
+[node name="Hitboxes" type="Container" parent="." unique_id=708615991]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AttackOne" type="Area2D" parent="Hitboxes" unique_id=2010401470]
+visible = false
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackOne" unique_id=1083217635]
+position = Vector2(13, 1.1920929e-07)
+rotation = -1.569733
+shape = SubResource("CapsuleShape2D_q0wx7")
+
+[node name="AttackTwo" type="Area2D" parent="Hitboxes" unique_id=1514815701]
+visible = false
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackTwo" unique_id=1973139497]
+position = Vector2(19, 1.9999998)
+rotation = 2.8909266
+scale = Vector2(2.9757285, -0.6346117)
+shape = SubResource("CapsuleShape2D_um34y")
+
+[node name="AttackThree" type="Area2D" parent="Hitboxes" unique_id=1903067798]
+visible = false
+position = Vector2(14, 0)
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackThree" unique_id=158580262]
+position = Vector2(2, 0)
+rotation = 0.012181836
+scale = Vector2(2.1847095, 0.5779477)
+shape = SubResource("CapsuleShape2D_jhm4y")
+
+[node name="AttackUp" type="Area2D" parent="Hitboxes" unique_id=46750214]
+visible = false
+collision_layer = 8
+collision_mask = 4
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/AttackUp" unique_id=973304408]
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_umsw2")
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=766925171]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection" unique_id=1757050938]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_h3g8s")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
+[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]

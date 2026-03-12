@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://cybk28nk3bo37" path="res://Floor1/Enemies/scripts/enemy_samurai.gd" id="1_yi7cw"]
 [ext_resource type="Texture2D" uid="uid://dvtol4iurh6ho" path="res://Floor1/Enemies/sprites/walking.png" id="2_yi7cw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiiyk"]
-radius = 7.0
-height = 32.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yi7cw"]
+radius = 4.5
+height = 28.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40r68"]
 atlas = ExtResource("1_gddy4")
@@ -79,7 +79,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -106,34 +106,56 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yi7cw"]
-size = Vector2(35, 31.5)
+size = Vector2(32, 26)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiiyk"]
+radius = 9.0
+height = 38.0
 
 [node name="EnemySamurai" type="CharacterBody2D" unique_id=10856245]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_yi7cw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1450164297]
-position = Vector2(1, 0)
-shape = SubResource("CapsuleShape2D_kiiyk")
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_yi7cw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1451966867]
 sprite_frames = SubResource("SpriteFrames_5afn6")
 animation = &"attack"
-frame = 3
-frame_progress = 0.41467136
+frame = 5
+frame_progress = 1.0
 
-[node name="AttackTimer" type="Timer" parent="." unique_id=1028163978]
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1441799830]
+[node name="RoninDetection" type="Area2D" parent="." unique_id=1441799830]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1709819377]
-position = Vector2(11.5, 0.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoninDetection" unique_id=1709819377]
+position = Vector2(13, 3)
 shape = SubResource("RectangleShape2D_yi7cw")
 
+[node name="AttackTimer" type="Timer" parent="." unique_id=1028163978]
+
+[node name="HitDetection" type="Area2D" parent="." unique_id=1035391161]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HitDetection" unique_id=1945399430]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_yi7cw")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=353021707]
+visible = false
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=436430431]
+position = Vector2(22, -4)
+shape = SubResource("CapsuleShape2D_kiiyk")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="RoninDetection" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="RoninDetection" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="area_entered" from="HitDetection" to="." method="_on_hit_detection_area_entered"]

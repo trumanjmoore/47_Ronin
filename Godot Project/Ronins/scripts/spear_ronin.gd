@@ -6,6 +6,7 @@ extends CharacterBody2D
 var combo_count: int = 0
 var character = "#1"
 @onready var combo_timer: Timer = $ComboTimer
+@onready var hitboxes = [$Hitboxes/AttackOne, $Hitboxes/AttackOne, $Hitboxes/AttackThree, $Hitboxes/AttackUp] 
 
 var spawn_position : Vector2
 var attack_index = 0
@@ -13,6 +14,8 @@ var sheathing = false
 var timedout = false
 var attacking = false
 var jumping = false
+
+var health = 3
 
 func _ready() -> void:
 	global_position = spawn_position
@@ -38,9 +41,11 @@ func _process(delta: float) -> void:
 			elif velocity.x < 0:
 				$AnimatedSprite2D.flip_h = true
 				$AnimatedSprite2D.play("walking")
+				$Hitboxes.scale.x = -1
 			elif velocity.x > 0:
 				$AnimatedSprite2D.flip_h = false
 				$AnimatedSprite2D.play("walking")
+				$Hitboxes.scale.x = 1
 			else:
 				$AnimatedSprite2D.play("breathing")
 	
@@ -65,6 +70,9 @@ func attack(attack_indx, attack) -> void:
 	if(1 < attack_indx && attack_indx < 4 && jumping):
 		return
 	$AnimatedSprite2D.play(attack)
+	hitboxes[attack_indx-1].monitoring = true
+	hitboxes[attack_indx-1].monitorable = true
+	hitboxes[attack_indx-1].visible = true
 	attack_index = attack_indx
 	attacking = true
 	$ComboTimer.stop()
@@ -80,14 +88,23 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if sheathing:
 		sheathing = false
 	elif attack_index == 3:
+		hitboxes[attack_index-1].monitoring = false
+		hitboxes[attack_index-1].monitorable = false
+		hitboxes[attack_index-1].visible = false
 		sheath()
 	elif attack_index == 4:
+		hitboxes[attack_index-1].monitoring = false
+		hitboxes[attack_index-1].monitorable = false
+		hitboxes[attack_index-1].visible = false
 		if jumping:
 			jumping = false
 		attack_index = 0
-		timedout = false;
+		timedout = false
 		attacking = false
 	elif attack_index > 0:
+		hitboxes[attack_index-1].monitoring = false
+		hitboxes[attack_index-1].monitorable = false
+		hitboxes[attack_index-1].visible = false
 		if jumping:
 			jumping = false
 			$ComboTimer.start(.1)
@@ -101,3 +118,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_combo_timer_timeout() -> void:
 	sheath()
 	$ComboTimer.stop()
+
+
+func _on_hit_detection_area_entered(area: Area2D) -> void:
+	health -= 1
+	if health <= 0:
+		queue_free()

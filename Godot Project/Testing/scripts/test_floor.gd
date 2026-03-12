@@ -1,23 +1,21 @@
 extends Node2D
 
 @onready var kunai = load("res://misc/scenes/kunai.tscn")
-@onready var ronins = load_ronin("res://Ronins/scenes/")
+@onready var ronins = load_ronins("res://Ronins/scenes/")
 @onready var samurai = load("res://Floor1/Enemies/scenes/enemy_samurai.tscn")
 
 var ronin_spawn = Vector2(10, 170)
 var enemy_spawn = Vector2(300, 170)
 
-func _ready():
-	var ronin = load(ronins.pick_random()).instantiate()
-	ronin.spawn_position = ronin_spawn
-	add_child.call_deferred(ronin)
-	
-	var enemy = samurai.instantiate()
-	enemy.spawn_position = enemy_spawn
-	enemy.player = ronin
-	add_child.call_deferred(enemy)
+var enemies = []
 
-func load_ronin(path: String) -> Array:
+var current_ronin : CharacterBody2D
+
+func _ready():
+	spawn_ronin()
+	spawn_enemy()
+
+func load_ronins(path: String) -> Array:
 	var files = []
 	var dir = DirAccess.open(path)
 	if dir:
@@ -29,6 +27,19 @@ func load_ronin(path: String) -> Array:
 			file_name = dir.get_next()
 	return files
 	
+func spawn_ronin():
+	var ronin = load(ronins.pick_random()).instantiate()
+	ronin.spawn_position = ronin_spawn
+	add_child.call_deferred(ronin)
+	current_ronin = ronin
+	current_ronin.tree_exiting.connect(_on_ronin_death)
+	
+func spawn_enemy():
+	var enemy = samurai.instantiate()
+	enemy.spawn_position = enemy_spawn
+	enemy.player = current_ronin
+	add_child.call_deferred(enemy)
+	enemies.push_back(enemy)
 	
 func throw(up, direction, combo_end):
 	var instance = kunai.instantiate()
@@ -47,3 +58,9 @@ func throw(up, direction, combo_end):
 			throw(false, direction, combo_end-2)
 		
 	add_child.call_deferred(instance)
+
+func _on_ronin_death():
+	ronin_spawn = current_ronin.global_position
+	spawn_ronin()
+	for enemy in enemies:
+		enemy.player = current_ronin
