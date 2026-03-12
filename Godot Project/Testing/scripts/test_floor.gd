@@ -8,7 +8,7 @@ var ronin_spawn = Vector2(10, 170)
 var enemy_spawn = Vector2(300, 170)
 
 func _ready():
-	var ronin = load(ronins.pick_random()).instantiate()
+	var ronin = PlayerManager.spawn_player(self, ronin_spawn)
 	ronin.spawn_position = ronin_spawn
 	add_child.call_deferred(ronin)
 	
