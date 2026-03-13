@@ -1,0 +1,63 @@
+extends Node2D
+
+@onready var kunai = load("res://misc/scenes/kunai.tscn")
+@onready var ronins = load_ronins("res://Ronins/scenes/")
+@onready var samurai = load("res://Floor1/Enemies/scenes/enemy_samurai.tscn")
+
+var ronin_spawn = Vector2(10, 170)
+var enemy_spawn = Vector2(300, 170)
+
+var enemies = []
+
+var current_ronin : CharacterBody2D
+
+func _ready():
+	spawn_ronin()
+	spawn_enemy()
+
+func load_ronins(path: String) -> Array:
+	var files = []
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir() and file_name.ends_with(".tscn"):
+				files.append(path.path_join(file_name))
+			file_name = dir.get_next()
+	return files
+	
+func spawn_ronin():
+	current_ronin  = PlayerManager.spawn_player(self, ronin_spawn)
+	current_ronin.tree_exiting.connect(_on_ronin_death)
+	
+func spawn_enemy():
+	var enemy = samurai.instantiate()
+	enemy.spawn_position = enemy_spawn
+	enemy.player = current_ronin
+	add_child.call_deferred(enemy)
+	enemies.push_back(enemy)
+	
+func throw(up, direction, combo_end):
+	var instance = kunai.instantiate()
+	instance.up = up
+	instance.dir = 1 if direction || up else -1
+	instance.spwnPos = $KunaiRonin.global_position
+	if up:
+		var x = $KunaiRonin.global_position.x - 4 if direction else $KunaiRonin.global_position.x + 5
+		instance.spwnPos = Vector2(x, $KunaiRonin.global_position.y - 2 + combo_end - 1)
+		await get_tree().create_timer(0.2).timeout
+		
+	elif combo_end > 0:
+		instance.spwnPos = Vector2($KunaiRonin.global_position.x, $KunaiRonin.global_position.y - 2 + combo_end - 1)
+		if combo_end > 1:
+			await get_tree().create_timer(0.2).timeout
+			throw(false, direction, combo_end-2)
+		
+	add_child.call_deferred(instance)
+
+func _on_ronin_death():
+	ronin_spawn = current_ronin.global_position
+	spawn_ronin()
+	for enemy in enemies:
+		enemy.player = current_ronin

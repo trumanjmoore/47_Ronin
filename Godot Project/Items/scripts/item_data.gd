@@ -1,0 +1,17 @@
+class_name ItemData extends Resource
+
+# track name, description, and texture of item
+@export var name : String = ""
+@export_multiline var description : String = ""
+@export var texture : Texture2D
+@export var max_capacity : int = 99
+
+@export_category("Item Use Effects")
+@export var effects: Array[ItemEffect]
+
+func use() -> bool:
+	if effects.size() == 0:
+		return false
+	for effect in effects:
+		effect.use()
+	return true

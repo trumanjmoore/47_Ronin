@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://degaho87b4dqm"]
+
+[ext_resource type="Texture2D" uid="uid://dprwulp5vavk2" path="res://Items/sprites/Card.png" id="1_3nwh7"]
+[ext_resource type="Script" uid="uid://x3jwpu4ym6u8" path="res://Testing/scripts/test_pickup.gd" id="1_uycdj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhv6p"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aftbo"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he682"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drcw1"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yptgx"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijuec"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8j7k"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0ye8"]
+atlas = ExtResource("1_3nwh7")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15udo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhv6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aftbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_he682")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drcw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yptgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijuec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8j7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0ye8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k574u"]
+size = Vector2(13, 14)
+
+[node name="test pickup" type="Area2D" unique_id=815839702]
+collision_mask = 3
+script = ExtResource("1_uycdj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=619868809]
+sprite_frames = SubResource("SpriteFrames_15udo")
+frame = 5
+frame_progress = 0.5434161
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=237570612]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_k574u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

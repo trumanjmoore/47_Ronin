@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cpddmyvu4muw4"]
+
+[ext_resource type="Script" uid="uid://g6rfb5ygjh0i" path="res://Homebase/scripts/gatcha.gd" id="1_blq60"]
+[ext_resource type="Texture2D" uid="uid://2yt6poj61qnv" path="res://Homebase/sprites/jojo power.png" id="2_5unh6"]
+
+[node name="Gatcha" type="Control" unique_id=1622759912]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_blq60")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=2026926464]
+position = Vector2(0, 23.500965)
+scale = Vector2(1, 0.74999046)
+closed = true
+width = 1.0
+default_color = Color(0.06666667, 0.11764706, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1810708976]
+layout_mode = 0
+offset_left = 58.0
+offset_right = 264.0
+offset_bottom = 179.0
+texture = ExtResource("2_5unh6")
+expand_mode = 3
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=2043180892]
+position = Vector2(0, 23.500965)
+scale = Vector2(1, 0.74999046)
+color = Color(0, 0, 1, 1)
